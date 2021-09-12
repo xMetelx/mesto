@@ -1,12 +1,9 @@
 .profile__pen-botton {
   margin-top: auto;
   margin-left: 18px;
-  padding: 0;
   box-sizing: border-box;
   border: 1px solid #FFF;
   display: flex;
-  height: 24px;
-  width: 24px;
   background-color:#000000;
   background-image: url(../../../images/pen.svg);
   background-repeat: no-repeat;
@@ -27,6 +24,5 @@
     height: 18px;
     margin-left: 10px;
     align-content: center;
-
   }
 }
