@@ -1,0 +1,21 @@
+.profile__add {
+  width: 150px;
+  height: 50px;
+  box-sizing: border-box;
+  border: 2px solid #FFF;
+  padding: 14px 64px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 580px) {
+  .profile__add {
+    width: 282px;
+    display: flex;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 880px) and (min-width: 581px) {
+  .profile__add {
+    width: 462px;
+  }
+}

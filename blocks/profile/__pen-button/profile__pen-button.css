@@ -1,0 +1,32 @@
+.profile__pen-botton {
+  margin-top: auto;
+  margin-left: 18px;
+  padding: 0;
+  box-sizing: border-box;
+  border: 1px solid #FFF;
+  display: flex;
+  height: 24px;
+  width: 24px;
+  background-color:#000000;
+  background-image: url(../../../images/pen.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  padding: 7px;
+}
+
+.profile__pen-botton:hover {
+  opacity: .6;
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 580px) {
+  .profile__pen-botton {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+    align-content: center;
+
+  }
+}
