@@ -9,7 +9,7 @@
   margin: auto;
 }
 
-@media screen and (max-width: 880px) and (min-width: 581px) {
+@media screen and (max-width: 920px) and (min-width: 581px) {
   .profile {
     flex-direction: column;
     align-items: center;
