@@ -6,6 +6,6 @@
 В дальнейшем данному сайту будет добавлено больше интерактивности за счет погужения в JS. 
 Язык страницы - Inter.
 
-##Ссылка на проект - https://github.com/xMetelx/mesto.git
+##Ссылка на проект - https://xmetelx.github.io/mesto/index.html
 
 
