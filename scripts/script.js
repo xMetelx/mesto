@@ -1,20 +1,21 @@
 const popupElement = document.querySelector('.popup');
-const popupOpenButtonElement = document.querySelector('.profile__pen-botton');
+const popupOpenButtonElement = document.querySelector('.profile__pen-button');
 const popupCloseButtonElement = document.querySelector('.popup__close');
-
-const togglePopupVisibility = function() {
-  popupElement.classList.toggle('popup_opened')
-}
-
-popupOpenButtonElement.addEventListener('click', togglePopupVisibility);
-popupCloseButtonElement.addEventListener('click', togglePopupVisibility);
-
-
 
 // Находим форму в DOM
 let formElement = document.querySelector('.popup__inputs')
 
-function formSubmitHandler (evt) {
+
+const openPopup = function() {
+  popupElement.classList.add('popup__opened')
+}
+
+const closePopup = function() {
+  popupElement.classList.remove('popup__opened')
+}
+
+
+function submitFormHandler (evt) {
 	evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 												// Так мы можем определить свою логику отправки.
 												// О том, как это делать, расскажем позже.
@@ -37,9 +38,12 @@ function formSubmitHandler (evt) {
   profileTitle.textContent = nameValue;
   profileSubtitle.textContent = jobValue;
 
-  togglePopupVisibility();
+  closePopup();
 }
+
+popupOpenButtonElement.addEventListener('click', openPopup);
+popupCloseButtonElement.addEventListener('click', closePopup);
 
 // // Прикрепляем обработчик к форме:
 // // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', submitFormHandler);
