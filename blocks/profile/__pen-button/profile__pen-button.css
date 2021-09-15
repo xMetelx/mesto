@@ -1,6 +1,7 @@
 .profile__pen-botton {
   margin-top: auto;
-  margin-left: 18px;
+  margin-left: 22px;
+  margin-bottom: 9px;
   box-sizing: border-box;
   border: 1px solid #FFF;
   display: flex;
@@ -11,6 +12,7 @@
   width: 24px;
   height: 24px;
   padding: 7px;
+  cursor: pointer;
 }
 
 .profile__pen-botton:hover {

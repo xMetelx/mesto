@@ -9,8 +9,6 @@
   .popup__inputs{
     max-width: 238px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
     margin-left: 22px;
   }
 }

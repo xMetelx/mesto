@@ -4,7 +4,6 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
   </head>
@@ -12,25 +11,22 @@
   <body>
     <div class="page">
       <header class="header">
-        <img src="images/logo.svg" class="header__logo" alt="Логотип">
-        <div class="header__line"></div>
+        <img src="./images/logo.svg" class="header__logo" alt="Логотип">
       </header>
 
       <main class="content">
         <section class="profile">
           <div class="profile__intro">
-            <img src="./images/photo.svg" class="profile__photo" alt="Фото профайла">
+            <img src="./images/photo_1.jpg" class="profile__photo" alt="Фото профайла">
             <div class="profile__text">
               <div class="profile__edit">
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <button class="profile__pen-botton"></button>
+                <button type="button" aria-label="Изменить профайл" class="profile__pen-botton"></button>
               </div>
               <p class="profile__subtitle">Исследователь океана</p>
             </div>
           </div>
-          <div class="profile__bottons">
-            <img src="./images/plus.svg" class="profile__add" alt="Добавить">
-          </div>
+          <button type="submit" aria-label="Добавить карточку" class="profile__add"></button>
         </section>
 
         <section class="elements">
@@ -39,8 +35,8 @@
               <img src="./images/Arkhyz.jpg" class="element__image" alt="Архыз">
               <div class="element__subscription">
                 <h2 class="element__title">Архыз</h2>
-                <button class="element__button">
-                  <img src="./images/like.svg" class="element__button-like" alt="Like!">
+                <button type="button" class="element__button">
+                  <img src="./images/like.svg"  class="element__button-like" alt="Нравится">
                 </button>
               </div>
             </li>
@@ -49,8 +45,8 @@
               <img src="./images/Chelyabinzk.jpg" class="element__image" alt="Челябинская область">
               <div class="element__subscription">
                 <h2 class="element__title">Челябинская область</h2>
-                <button class="element__button">
-                  <img src="./images/like.svg" class="element__button-like" alt="Like!">
+                <button type="button" class="element__button">
+                  <img src="./images/like.svg" class="element__button-like" alt="Нравится">
                 </button>
               </div>
             </li>
@@ -59,8 +55,8 @@
               <img src="./images/Dombai.svg" class="element__image" alt="Домбай">
               <div class="element__subscription">
                 <h2 class="element__title">Домбай</h2>
-                <button class="element__button">
-                  <img src="./images/like.svg" class="element__button-like" alt="Like!">
+                <button type="button" class="element__button">
+                  <img src="./images/like.svg" class="element__button-like" alt="Нравится">
                 </button>
               </div>
             </li>
@@ -69,18 +65,18 @@
               <img src="./images/kholmogorsky-rayon.jpg" class="element__image" alt="Холмогорский район">
               <div class="element__subscription">
                 <h2 class="element__title">Холмогорский район</h2>
-                <button class="element__button">
-                  <img src="./images/like.svg" class="element__button-like" alt="Like!">
+                <button type="button" class="element__button">
+                  <img src="./images/like.svg" class="element__button-like" alt="Нравится">
                 </button>
               </div>
             </li>
 
             <li class="element">
-              <img src="./images/MO.jpg" class="element__image element__image_brightness_low" alt="Московская область">
+              <img src="./images/MO.jpg" class="element__image" alt="Московская область">
               <div class="element__subscription">
-                <h2 class="element__title">Московская область</h2>
-                <button class="element__button">
-                  <img src="./images/like.svg" class="element__button-like" alt="Like!">
+                <h2 class="element__title">Московская область</h2> <!--После удаления модификатора, отвечающего за яркость, картинка в карточке стала сильно выделяться на фоне остальных, менее ярких-->
+                <button type="button" class="element__button">
+                  <img src="./images/like.svg" class="element__button-like" alt="Нравится">
                 </button>
               </div>  
             </li>
@@ -89,8 +85,8 @@
               <img src="./images/Sochi.jpg" class="element__image" alt="Сочи">
               <div class="element__subscription">
                 <h2 class="element__title">Сочи</h2>
-                <button class="element__button">
-                  <img src="./images/like.svg" class="element__button-like" alt="Like!">
+                <button type="button" class="element__button">
+                  <img src="./images/like.svg" class="element__button-like" alt="Нравится">
                 </button>
               </div>  
             </li>
@@ -106,19 +102,17 @@
 
 
 
-      <section class="popup">
+      <div class="popup">
         <div class="popup__container">
-          <button class="popup__close"></button>
-          <form class="popup__inputs">
+          <button type="button" class="popup__close"></button>
+          <form name="edit-profile" class="popup__inputs">
             <h2 class="popup__title">Редактировать&nbspпрофиль</h2>
-            <input type="text" name="name" value="Жак-Ив Кусто" placeholder="" class="popup__input popup__input_name" >
-            <div class="popup__line"></div>
-            <input type="text" name="about" value="Исследователь океана" placeholder="" class="popup__input popup__input_job">
-            <div class="popup__line"></div>
+            <input type="text" name="name" value="" placeholder="Ваше имя" class="popup__input popup__input_name_name" >
+            <input type="text" name="about" value="" placeholder="Род занятий" class="popup__input popup__input_name_job">
             <button type="submit" class="popup__button">Сохранить</button>
           </form>
         </div>
-      </section>
+      </div>
     </div> 
 
     <script src="./scripts/script.js"></script>

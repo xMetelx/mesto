@@ -4,7 +4,7 @@
   right: -40px;
   width: 32px;
   height: 32px;
-  background: transparent center url(../../../images/Close\ Icon.svg);
+  background: transparent center url(../../../images/Close_Icon.svg);
   background-size: auto;
   border: none;
 }
@@ -16,6 +16,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 580px) {
   .popup__close{
+    background: transparent center url(../../../images/Close_Icon_320.svg);
     top: -36px;
     right: 0;
     width: 20px;

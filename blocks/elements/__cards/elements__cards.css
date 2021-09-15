@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: repeat(3, 282px);
   grid-template-rows: repeat(auto-fill, 361px);
-  gap: 17px 20px;
+  gap: 20px;
   justify-content: center;
 }
 

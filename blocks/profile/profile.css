@@ -2,23 +2,20 @@
   max-width: 880px;
   width: 100%;
   color: #FFF;
-  padding: 40px 0;
+  padding: 37px 0 53px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: auto;
 }
 
-@media screen and (max-width: 920px) and (min-width: 581px) {
+@media screen and (max-width: 920px) and (min-width: 320px) {
   .profile {
     flex-direction: column;
-    align-items: center;
+    max-width: 580px;
+    padding-top: 44px;
+    padding-bottom: 0;
+    margin-bottom: 36px;
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 580px) {
-  .profile {
-    flex-direction: column;
-    align-content: center;
-  }
-}
