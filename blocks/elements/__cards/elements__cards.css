@@ -11,7 +11,6 @@
 }
 
 @media screen and (max-width: 920px) {
-
   .elements__cards {
     grid-template-columns: repeat(2, 282px);
   }

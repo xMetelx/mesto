@@ -24,5 +24,6 @@
   .profile__add {
     padding: 23px 140px;
     margin: 32px auto 0;
+    background-size: 16px;
   }
 }
