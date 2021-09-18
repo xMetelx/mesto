@@ -21,12 +21,12 @@
             <div class="profile__text">
               <div class="profile__edit">
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <button type="button" aria-label="Изменить профайл" class="profile__pen-button"></button>
+                <button type="button" aria-label="Изменить профайл" class="profile__pen-button profile_opened"></button>
               </div>
               <p class="profile__subtitle">Исследователь океана</p>
             </div>
           </div>
-          <button type="button" aria-label="Добавить карточку" class="profile__add"></button>
+          <button type="button" aria-label="Добавить карточку" class="profile__add profile_opened"></button>
         </section>
 
         <section class="elements">
@@ -111,31 +111,29 @@
           </form>
         </div>
       </div>
+
+      <div class="popup popup__add-card">
+        <div class="popup__container">
+         <button type="button" class="popup__close"></button>
+          <form name="add-card" class="popup__inputs">
+           <h2 class="popup__title">Новое место</h2>
+            <input type="text" name="title" value="" placeholder="Название" class="popup__input popup__input_title" >
+           <input type="text" name="link" value="" placeholder="Ссылка на картинку" class="popup__input popup__input_link">
+            <button type="submit" class="popup__button">Сохранить</button>
+         </form>
+       </div>
+
+      </div>   
     </div> 
+ 
 
 
-
-
-
-
-    <section class="popup add__card">
-      <div class="popup__container">
-        <button class="popup__close"></button>
-        <form class="popup__inputs">
-          <h2 class="popup__title">Новое место</h2>
-          <input type="text" name="name" value="" placeholder="Название" class="popup__input popup__input_name" >
-          <div class="popup__line"></div>
-          <input type="text" name="about" value="" placeholder="Ссылка на картинку" class="popup__input popup__input_job">
-          <div class="popup__line"></div>
-          <button type="submit" class="popup__button">Сохранить</button>
-        </form>
-      </div>
-    </section>
 
 
 
     <script src="./scripts/script.js"></script>
     <script src="./scripts/forms.js"></script>
+
 
   </body>
   </html>
