@@ -7,8 +7,6 @@ let nameInput = document.querySelector('.popup__input_name_name');
 let jobInput = document.querySelector('.popup__input_name_job');
 let profileName = document.querySelector('.profile__title');
 let profileJob = document.querySelector('.profile__subtitle');
-let profileTitle = document.querySelector('.profile__title');
-let profileSubtitle = document.querySelector('.profile__subtitle');
 
 const openPopup = function() {
   popupElement.classList.add('popup_opened');
@@ -21,8 +19,8 @@ const closePopup = function() {
 
 function submitFormHandler (evt) {
 	evt.preventDefault();
-  profileTitle.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
   closePopup();
 }
 popupOpenButtonElement.addEventListener('click', openPopup);
