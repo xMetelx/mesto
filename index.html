@@ -31,17 +31,18 @@
 
         <section class="elements">
           <ul class="elements__cards">
-            <li class="element">
+              <!-- <li class="element">
               <img src="./images/Arkhyz.jpg" class="element__image" alt="Архыз">
+              <button type="button" class="element__basket"></button>
               <div class="element__subscription">
                 <h2 class="element__title">Архыз</h2>
                 <button type="button" class="element__button">
-                  <img src="./images/like.svg"  class="element__button-like" alt="Нравится">
+                  <div class="element__button-like"></div>
                 </button>
               </div>
-            </li>
+            </li>  -->
 
-            <li class="element">
+            <!-- <li class="element">
               <img src="./images/Chelyabinzk.jpg" class="element__image" alt="Челябинская область">
               <div class="element__subscription">
                 <h2 class="element__title">Челябинская область</h2>
@@ -74,8 +75,8 @@
             <li class="element">
               <img src="./images/MO.jpg" class="element__image" alt="Московская область">
               <div class="element__subscription">
-                <h2 class="element__title">Московская область</h2> <!--После удаления модификатора, отвечающего за яркость, картинка в карточке стала сильно выделяться на фоне остальных, менее ярких-->
-                <button type="button" class="element__button">
+                <h2 class="element__title">Московская область</h2> После удаления модификатора, отвечающего за яркость, картинка в карточке стала сильно выделяться на фоне остальных, менее ярких -->
+                <!--  <button type="button" class="element__button">
                   <img src="./images/like.svg" class="element__button-like" alt="Нравится">
                 </button>
               </div>  
@@ -89,7 +90,7 @@
                   <img src="./images/like.svg" class="element__button-like" alt="Нравится">
                 </button>
               </div>  
-            </li>
+            </li> -->
           </ul>
 
         </section>
@@ -100,7 +101,7 @@
         <p class="footer__author">&copy; 2021 Метель</p>
       </footer>
 
-      <div class="popup">
+      <div class="popup popup__edit">
         <div class="popup__container">
           <button type="button" class="popup__close"></button>
           <form name="edit-profile" class="popup__inputs">
@@ -119,21 +120,39 @@
            <h2 class="popup__title">Новое место</h2>
             <input type="text" name="title" value="" placeholder="Название" class="popup__input popup__input_title" >
            <input type="text" name="link" value="" placeholder="Ссылка на картинку" class="popup__input popup__input_link">
-            <button type="submit" class="popup__button">Сохранить</button>
+            <button type="submit" class="popup__button">Создать</button>
          </form>
        </div>
-
       </div>   
-    </div> 
- 
 
+      <div class="popup popup__open-photo">
+        <div class="popup__container popup__container_style_picture">
+          <button type="button" class="popup__close"></button>
+          <div class="popup__picture"></div>
+          <p class="popup__description">Abrakadabra<!--Value из карточки--></p>
+        </div>
+      </div>   
+
+    </div> 
+
+
+
+ 
+      <template class="element-template">
+        <li class="element">
+          <img src="#" class="element__image" alt="">
+          <button type="button" class="element__basket"></button>
+          <div class="element__subscription">
+            <h2 class="element__title"></h2>
+            <button type="button" class="element__button"></button>
+          </div>
+        </li>
+      </template>  
 
 
 
 
     <script src="./scripts/script.js"></script>
-    <script src="./scripts/forms.js"></script>
-
 
   </body>
   </html>

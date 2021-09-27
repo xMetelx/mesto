@@ -1,6 +1,6 @@
 .popup__container {
   position: relative;
-  margin: 195px auto;
+  margin: auto;
   max-width: 430px;
   max-height: 330px;
   width: 100%;
@@ -19,6 +19,5 @@
     max-width: 282px;
     max-height: 322px;
     width: 100%;
-    margin-top: 123px;
   }
 }
