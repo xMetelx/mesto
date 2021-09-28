@@ -125,11 +125,3 @@ createCards();
 
 popupAddElement.addEventListener('submit', addCard);
 formElement.addEventListener('submit', submitFormHandler);
-
-
-
- 
-
-
-
-
