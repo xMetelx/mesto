@@ -6,21 +6,11 @@
   margin-right: 16px;
   margin-top: 26px;
   background-image: url(../../../images/like.svg);
-  background-color: white;
-  border: none;
   width: 22px;
   height: 19px;
   cursor: pointer;
 }
 
-.element__button:disabled {
-
-}
-
 .element__button:hover {
   opacity: .5;
-}
-
-.element__button:active {
-
 }
