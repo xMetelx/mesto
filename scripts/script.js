@@ -62,7 +62,7 @@ profileAdd.addEventListener('click', openAdd);
 const openPicture = function(evt){
   popupOpenPicture.classList.add('popup_opened');
   const popupPicture = document.querySelector('.popup__picture');
-  popupPicture.style.backgroundImage = 'url('+evt.target.src+')';
+  popupPicture.src = evt.target.src;
   const popupTitle = document.querySelector('.popup__description');
   popupTitle.textContent = evt.target.parentElement.querySelector('.element__title').textContent;
 }
