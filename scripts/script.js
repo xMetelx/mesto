@@ -25,12 +25,12 @@ const initialCards = [
   }
 ];
 
-const popupElement = document.querySelector('.popup__edit');
+const popupElement = document.querySelector('.popup_edit');
 const popupOpenButtonElement = document.querySelector('.profile__pen-button');
 const profileAdd = document.querySelector('.profile__add');
 const popupCloseButtonElement = document.querySelectorAll('.popup__close');
-const popupAddElement = document.querySelector('.popup__add-card');
-const popupOpenPicture = document.querySelector('.popup__open-photo');
+const popupAddElement = document.querySelector('.popup_add-card');
+const popupOpenPicture = document.querySelector('.popup_open-photo');
 const list = document.querySelector('.elements__cards');
 const templateElement = document.querySelector('.element-template');
 const addCardButton = document.querySelector('.popup__add-card .popup__button');
