@@ -43,7 +43,6 @@ let profileName = document.querySelector('.profile__title');
 let profileJob = document.querySelector('.profile__subtitle');
 
 // открытие попапа №1
-
 const openPopup = function() {
   popupElement.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
@@ -52,7 +51,6 @@ const openPopup = function() {
 popupOpenButtonElement.addEventListener('click', openPopup);
 
 // открытие попапа №2
-
 const openAdd = function() {
   popupAddElement.classList.add('popup_opened');
 }
