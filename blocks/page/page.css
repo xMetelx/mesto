@@ -3,7 +3,7 @@
   background-color: #000;
   padding: 0;
   min-width: 320px;
-  margin: auto;
+  margin: 0 auto;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
