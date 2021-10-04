@@ -37,10 +37,10 @@ const submitBtnEdit = document.querySelector('.popup_edit .popup__inputs');
 const popupPicture = document.querySelector('.popup__picture');
 const popupTitle = document.querySelector('.popup__description');
 
-let nameInput = document.querySelector('.popup__input_name_name');
-let jobInput = document.querySelector('.popup__input_name_job');
-let profileName = document.querySelector('.profile__title');
-let profileJob = document.querySelector('.profile__subtitle');
+const nameInput = document.querySelector('.popup__input_name_name');
+const jobInput = document.querySelector('.popup__input_name_job');
+const profileName = document.querySelector('.profile__title');
+const profileJob = document.querySelector('.profile__subtitle');
 
 // открытие попапа
 function openPopup(popup) {
@@ -61,7 +61,8 @@ profileAdd.addEventListener('click', function() {
 const openPicture = function(evt){
   openPopup(popupOpenPicture);
   popupPicture.src = evt.target.src;
-  popupTitle.textContent = evt.target.parentElement.querySelector('.element__title').textContent;
+  popupPicture.alt = evt.target.alt;
+  popupTitle.textContent = evt.target.alt;
 }
 
 // закрытие попапа
@@ -86,7 +87,7 @@ const likeButton = function(evt) {
 }
 
 function createCard(newInputTitle, newInputLink) { 
-  let newCard = templateElement.content.cloneNode(true);
+  const newCard = templateElement.content.cloneNode(true);
   const cardImage = newCard.querySelector('.element__image');
   cardImage.addEventListener('click', openPicture);
   newCard.querySelector('.element__title').textContent = newInputTitle;
