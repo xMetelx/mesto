@@ -25,6 +25,7 @@ const initialCards = [
   }
 ];
 
+const popupGenerals = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_edit');
 const popupPenButton = document.querySelector('.profile__pen-button');
 const profileAdd = document.querySelector('.profile__add');
@@ -36,7 +37,6 @@ const templateElement = document.querySelector('.element-template');
 const submitBtnEdit = document.querySelector('.popup_edit .popup__inputs');
 const popupPicture = document.querySelector('.popup__picture');
 const popupTitle = document.querySelector('.popup__description');
-
 const nameInput = document.querySelector('.popup__input_name_name');
 const jobInput = document.querySelector('.popup__input_name_job');
 const profileName = document.querySelector('.profile__title');
@@ -75,6 +75,12 @@ popupCloseBtns.forEach(function(button) {
     closePopup(evt.target.closest('.popup_opened'))
   });
 });
+
+function popupCloseOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup();
+  }
+}
 
 // Basket button
 const deleteCard = function (evt) {
@@ -125,5 +131,6 @@ initialCards.forEach(function(element) {
   renderCard(element.name, element.link);
 });
 
+// popupGenerals.addEventListener('click', popupCloseOverlay);
 popupAddElement.addEventListener('submit', addCard);
 submitBtnEdit.addEventListener('submit', submitFormHandler);
