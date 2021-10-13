@@ -45,6 +45,7 @@ const profileJob = document.querySelector('.profile__subtitle');
 // открытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  popup.addEventListener('keydown', escFunction);
 }
 
 popupPenButton.addEventListener('click', function() {
@@ -68,6 +69,7 @@ const openPicture = function(evt){
 // закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  popup.removeEventListener('keydown', escFunction);
 }
 
 popupCloseBtns.forEach(function(button) {
@@ -76,10 +78,23 @@ popupCloseBtns.forEach(function(button) {
   });
 });
 
-function popupCloseOverlay(evt) {
+function closePopupByOverlay(evt) {
   if (evt.target === evt.currentTarget) {
-    closePopup();
+    closePopup(evt.target.closest('.popup_opened'));
   }
+}
+
+popupGenerals.forEach(function(overlay) {
+  overlay.addEventListener('click', closePopupByOverlay);
+});
+
+const escFunction = function (popupGenerals) {
+  popupGenerals.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape') {
+      console.log('проверка');
+      closePopup(evt.target.closest('.popup_opened'));
+  };
+});
 }
 
 // Basket button
@@ -131,6 +146,5 @@ initialCards.forEach(function(element) {
   renderCard(element.name, element.link);
 });
 
-// popupGenerals.addEventListener('click', popupCloseOverlay);
 popupAddElement.addEventListener('submit', addCard);
 submitBtnEdit.addEventListener('submit', submitFormHandler);
