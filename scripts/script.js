@@ -45,7 +45,7 @@ const profileJob = document.querySelector('.profile__subtitle');
 // открытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  popup.addEventListener('keydown', escFunction);
+  window.addEventListener('keydown', useEsc);
 }
 
 popupPenButton.addEventListener('click', function() {
@@ -69,7 +69,7 @@ const openPicture = function(evt){
 // закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  popup.removeEventListener('keydown', escFunction);
+  window.removeEventListener('keydown', useEsc);
 }
 
 popupCloseBtns.forEach(function(button) {
@@ -88,13 +88,12 @@ popupGenerals.forEach(function(overlay) {
   overlay.addEventListener('click', closePopupByOverlay);
 });
 
-const escFunction = function (popupGenerals) {
-  popupGenerals.addEventListener('keydown', function (evt) {
-    if (evt.key === 'Escape') {
-      console.log('проверка');
-      closePopup(evt.target.closest('.popup_opened'));
-  };
-});
+const useEsc = function (evt) {
+  const popupOpened = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    console.log('проверка');
+    closePopup(popupOpened);
+  }
 }
 
 // Basket button
