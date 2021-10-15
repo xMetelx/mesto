@@ -80,7 +80,7 @@ popupCloseBtns.forEach(function(button) {
 
 function closePopupByOverlay(evt) {
   if (evt.target === evt.currentTarget) {
-    closePopup(evt.target.closest('.popup_opened'));
+    closePopup(evt.target);
   }
 }
 
@@ -89,9 +89,8 @@ popupGenerals.forEach(function(overlay) {
 });
 
 const useEsc = function (evt) {
-  const popupOpened = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
-    console.log('проверка');
+    const popupOpened = document.querySelector('.popup_opened');
     closePopup(popupOpened);
   }
 }

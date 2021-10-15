@@ -43,6 +43,7 @@ const setEventListeners = (formElement, config) => {
 
   formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
+    toggleButtonState(submitButton, false, config);
   })
 }
 
@@ -53,7 +54,7 @@ const enableValidation = (config) => {
     })
 }
 
-validationConfig = {
+const validationConfig = {
     formSelector: '.popup__inputs',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
