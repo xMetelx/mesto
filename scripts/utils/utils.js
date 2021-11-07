@@ -38,10 +38,8 @@ const resetAddForm = function (evt) {
 // убрать ошибки валидации при открытии попапа
 const resetFormInputs = function (evt) {
   const inputForm = evt.querySelector('.popup__inputs');
-
   if(inputForm != null) {
   const formErrors = evt.querySelectorAll('.popup__inputs-error');
-  console.log(inputForm)
   const formEmphasizes = evt.querySelectorAll('.popup__input');
   inputForm.reset();
   formErrors.forEach(function(element){
