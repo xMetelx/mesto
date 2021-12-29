@@ -1,31 +1,17 @@
-export {deleteCard, likeButton, openPopup, openPicture, resetAddForm, resetFormInputs, closePopup, closePopupByEsc}
+export { resetAddForm, resetFormInputs, closePopup, closePopupByEsc}
+
+
+
+
 
 // Basket button
-const deleteCard = function (evt) {
-    evt.target.closest('.element').remove();
-  }
 
-// LIKE button
-  const likeButton = function(evt) {
-    evt.target.classList.toggle('element__button-like_status_active');
-  }
   
-// открытие попапов
-  function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    window.addEventListener('keydown', closePopupByEsc);
-  }
-
-//открытие попапа по клику на картинку
-const openPicture = function(evt){
-  const popupOpenPicture = document.querySelector('.popup_open-photo');
-  const popupPicture = document.querySelector('.popup__picture');
-  const popupTitle = document.querySelector('.popup__description');
-  openPopup(popupOpenPicture);
-  popupPicture.src = evt.target.src;
-  popupPicture.alt = evt.target.alt;
-  popupTitle.textContent = evt.target.alt;
-}
+// // открытие попапов
+//   function openPopup(popup) {
+//     popup.classList.add('popup_opened');
+//     window.addEventListener('keydown', closePopupByEsc);
+//   }
 
 //ресет формы
 const resetAddForm = function (evt) {
