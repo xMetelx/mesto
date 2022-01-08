@@ -1,5 +1,5 @@
 export default class Section {
-  constructor ( items = [], containerElement, renderer ) { //все в фигурных скобках
+  constructor ( items = [], containerElement, renderer ) {
     this._items = items;
     this._containerElement = containerElement;
     this._renderer = renderer;

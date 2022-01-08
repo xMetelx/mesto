@@ -4,20 +4,19 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
   </head>
 
   <body class="page">
     <div>
       <header class="header">
-        <img src="./images/logo.svg" class="header__logo" alt="Логотип">
+        <img src="<%=require('./images/logo.svg')%>" class="header__logo" alt="Логотип">
       </header>
 
       <main class="content">
         <section class="profile">
           <div class="profile__intro">
-            <img src="./images/photo_1.jpg" class="profile__photo" alt="Фото профайла">
+            <img src="<%=require('./images/photo_1.jpg')%>" class="profile__photo" alt="Фото профайла">
             <div class="profile__text">
               <div class="profile__edit">
                 <h1 class="profile__title"></h1>
@@ -89,10 +88,8 @@
         </li>
       </template>  
 
-    <script type="module" src="./scripts/script.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/Section.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
+
 
 
   </body>
