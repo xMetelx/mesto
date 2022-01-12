@@ -37,23 +37,31 @@ export default class FormValidator {
   } 
 
   _setEventListeners () {
-    const inputsList = this.form.querySelectorAll(this.config.inputSelector);
-    const submitButton = this.form.querySelector(this.config.submitButtonSelector);
-    Array.from(inputsList).forEach(inputElement => {
+    this._inputsList = this.form.querySelectorAll(this.config.inputSelector);
+    this._submitButton = this.form.querySelector(this.config.submitButtonSelector);
+    Array.from(this._inputsList).forEach(inputElement => {
       inputElement.addEventListener('input', () => {
         const isFormValid = inputElement.checkValidity();
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(submitButton, isFormValid);
+        this._toggleButtonState(this._submitButton, isFormValid);
     })
-  })
-  
+  });
+
     this.form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._toggleButtonState(submitButton, false, this.config);
-    })
+      this._toggleButtonState(this._submitButton, false, this.config);
+    });
   }
 
   enableValidation () {
     this._setEventListeners();
+  }
+
+  resetValidation(boolean) {
+    this._toggleButtonState(this._submitButton, boolean);
+    this._inputsList.forEach((inputElement) => {
+      const errorElement = this.form.querySelector(`.${inputElement.id}-error`);
+      this._hideError(errorElement, inputElement)
+    });
   }
 }

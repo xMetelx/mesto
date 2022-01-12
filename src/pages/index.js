@@ -1,39 +1,36 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import {initialCards} from './utils/initial-cards.js';
-import {validationConfig} from './utils/constants.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
-import Section from './Section.js';
-import UserInfo from './UserInfo.js';
-import {popupEditProfile, popupAddCard, popupOpenPicture, popupEditButton, popupAddButton, elementsList, templateElement, profileName, profileJob, addFormElement, editFormElement, nameEditProfile, jobEditProfile} from './utils/constants.js';
+import './index.css';
+
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import {initialCards} from '../components/utils/constants.js';
+import {validationConfig} from '../components/utils/constants.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo';
+import {popupEditProfile, popupAddCard, popupOpenPicture, popupEditButton, popupAddButton, elementsList, templateElement, profileName, profileJob, addFormElement, editFormElement, nameEditProfile, jobEditProfile} from '../components/utils/constants.js';
 
 // информация о пользователе
 
 const userInfo = new UserInfo(profileName, profileJob);
-userInfo.setUserInfo('Жак-Ив Кусто', 'Исследователь океана');
-const getUserInfo = userInfo.getUserInfo();
-
-function getProfile () {
-  profileName.textContent = getUserInfo.name;
-  profileJob.textContent = getUserInfo.job
-}
-getProfile();
+userInfo.setUserInfo({name: 'Жак-Ив Кусто', about: 'Исследователь океана'});
 
 //вызов валидации
 
 function addCardFormValidator() {
   const addFormValidation = new FormValidator(validationConfig, addFormElement);
   addFormValidation.enableValidation();
-};
+  return addFormValidation;
+}
 
 function editProfileFormValidator() {
   const editProfileValidation = new FormValidator(validationConfig, editFormElement);
   editProfileValidation.enableValidation();
+  return editProfileValidation;
 }
 
-addCardFormValidator();
-editProfileFormValidator();
+const addCardFormValidating = addCardFormValidator();
+const editProfileFormValidating = editProfileFormValidator();
 
 // добавить карточку
 
@@ -41,6 +38,7 @@ const addCardPopup = new PopupWithForm(popupAddCard, submitCardForm);
 
 popupAddButton.addEventListener('click', () => { 
   addCardPopup.openPopup(); 
+  addCardFormValidating.resetValidation(false);
 });
 
 function submitCardForm (dataFromForm) { 
@@ -52,9 +50,8 @@ addCardPopup.setEventListeners();
 
 // редактировать данные
 
-function submitEditForm() {
-  userInfo.setUserInfo(nameEditProfile.value, jobEditProfile.value);
-  userInfo.updateUserInfo();
+function submitEditForm(data) {
+  userInfo.setUserInfo({name: data.name, about: data.about});
   editProfilePopup.closePopup();
 };
 
@@ -67,6 +64,7 @@ function editFormSubmit() {
   editProfilePopup.openPopup();
   nameEditProfile.value = user.name;
   jobEditProfile.value = user.job;
+  editProfileFormValidating.resetValidation(true);
 }
 
 popupEditButton.addEventListener('click', editFormSubmit);
