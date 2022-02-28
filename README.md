@@ -8,6 +8,6 @@
 
 Язык страницы - Inter.
 
-##Ссылка на проект - https://xmetelx.github.io/mesto/index.html
+##Ссылка на проект - https://xmetelx.github.io/mesto/
 
 

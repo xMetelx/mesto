@@ -3,10 +3,11 @@ export default class Section {
     this._items = items;
     this._containerElement = containerElement;
     this._renderer = renderer;
+
   }
 
-  renderItems() {
-    this._items.forEach((item) => {
+  renderItems(items) {
+    items.forEach((item) => {
       this._renderer(item);
     });
   }
@@ -18,5 +19,9 @@ export default class Section {
     if (place === 'after') {
       this._containerElement.append(element)
     }
+  }
+
+  removeItem (itemId) {
+    console.log(itemId);
   }
 }
