@@ -9,6 +9,7 @@ export class Api {
   constructor(section, profile) {
     this._section = section;
     this._profile = profile;
+    this._baseUrl = 'https://mesto.nomoreparties.co/v1/cohort-34';
     this._getUserUrl = 'https://mesto.nomoreparties.co/v1/cohort-34/users/me';
     this._getCardsUrl = 'https://mesto.nomoreparties.co/v1/cohort-34/cards';
     this._deleteCardUrl = 'https://mesto.nomoreparties.co/v1/cohort-34/cards';
@@ -20,9 +21,11 @@ export class Api {
     }
   }
 
+  // `${this._baseUrl}/${cardId}`
+
   // данные пользователя
   getUserInfo () {
-    return fetch(this._getUserUrl, {
+    return fetch(this._baseUrl + '/users/me', {
       method: 'GET',
       headers: this._headers
     })
@@ -31,7 +34,7 @@ export class Api {
 
   // данные карточки - рендерим имеющиеся на сервере
   getCards () {
-    return fetch(this._getCardsUrl, {
+    return fetch(this._baseUrl + '/cards', {
       method: 'GET',
       headers: this._headers
     })
@@ -40,7 +43,7 @@ export class Api {
 
   // меняем имя и деятельность в профайле
   patchProfile (name, about) {
-    return fetch(this._getUserUrl, {
+    return fetch(this._baseUrl + '/users/me', {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -53,7 +56,7 @@ export class Api {
 
   //отправляем свою карточку на сервер  
   postCard (name, link) {
-    return fetch(this._getCardsUrl, {
+    return fetch(this._baseUrl + '/cards', {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -66,7 +69,7 @@ export class Api {
 
   // ставим лайк
   setCardLike (cardId) {
-    return fetch(`${this._likeCardUrl}/${cardId}`, {
+    return fetch(`${this._baseUrl + '/cards/likes'}/${cardId}`, {
       method: 'PUT',
       headers: this._headers
     })
@@ -75,7 +78,7 @@ export class Api {
 
   // удаляем лайк
   deleteCardLike (cardId) {
-    return fetch(`${this._likeCardUrl}/${cardId}`, {
+    return fetch(`${this._baseUrl + '/cards/likes'}/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
     })
@@ -84,7 +87,7 @@ export class Api {
 
   // удаляем карточку
   removeCard (cardId) {
-    return fetch (`${this._deleteCardUrl}/${cardId}`, {
+    return fetch (`${this._baseUrl + '/cards'}/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
     })
@@ -93,7 +96,7 @@ export class Api {
 
  //меняем аватар пользователя
   patchAvatar (avatar) {
-    return fetch(this._patchAvatarUrl, {
+    return fetch(this._baseUrl + '/users/me/avatar', {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({

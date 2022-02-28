@@ -9,7 +9,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupDeleteCard from '../components/PopupDeleteCard.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo';
-import {popupEditProfile, popupAddCard, popupOpenPicture, popupEditButton, popupAddButton, elementsList, templateElement, profileName, profileJob, addFormElement, editFormElement, nameEditProfile, jobEditProfile, popupEditAvatar, avatarEditButton, profilePhoto, deleteCardForm} from '../components/utils/constants.js';
+import {popupEditProfile, popupAddCard, popupOpenPicture, popupEditButton, popupAddButton, elementsList, templateElement, profileName, profileJob, addFormElement, editFormElement, nameEditProfile, jobEditProfile, popupEditAvatar, avatarEditButton, profilePhoto, editAvatarElement, deleteCardForm} from '../components/utils/constants.js';
 
 // информация о пользователе
 const userInfo = new UserInfo(profileName, profileJob, profilePhoto);
@@ -82,16 +82,12 @@ const deleteCardPopup = new PopupDeleteCard (deleteCardForm, deleteCardElement);
 deleteCardPopup.setEventListeners();
 
 function deleteCardElement (card) {
-  deleteCardPopup.loadingStatus(true);
   api.removeCard(card._id)
     .then(() => {
       card._deleteCard(card);
       deleteCardPopup.closePopup();
     })
     .catch(err => console.log(err))
-    .finally(() => {
-      deleteCardPopup.loadingStatus(false);
-    })
   }
 
 popupAddButton.addEventListener('click', () => { 
@@ -169,6 +165,7 @@ editAvatarPopup.setEventListeners();
 
 avatarEditButton.addEventListener('click', () => { 
   editAvatarPopup.openPopup();
+  editAvatarFormValidation.resetValidation(true);
 });
 
 //вызов валидации
@@ -185,5 +182,12 @@ function editProfileFormValidator() {
   return editProfileValidation;
 }
 
+function editAvatarFormValidator() {
+  const editAvatarFormValidation = new FormValidator(validationConfig, editAvatarElement);
+  editAvatarFormValidation.enableValidation();
+  return editAvatarFormValidation;
+}
+
 const addCardFormValidating = addCardFormValidator();
 const editProfileFormValidating = editProfileFormValidator();
+const editAvatarFormValidation = editAvatarFormValidator(); // use with submit button

@@ -23,4 +23,5 @@ export const jobEditProfile = document.querySelector('.popup__input_name_job');
 export const popupEditAvatar = document.querySelector('.popup_change-avatar');
 export const avatarEditButton = document.querySelector('.profile__avatar');
 export const profilePhoto = document.querySelector('.profile__photo');
+export const editAvatarElement = document.querySelector('form[name="change-avatar"]');
 export const deleteCardForm = document.querySelector('.popup_delete-card');
