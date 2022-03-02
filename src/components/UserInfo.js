@@ -7,10 +7,19 @@ export default class UserInfo {
     this._profileId = ''
   }
 
-  setUserInfo ({name, about, id}) { 
-    this._nameEditProfile.textContent = name,
-    this._jobEditProfile.textContent = about,
-    this._profileId = id
+  setUserInfo ({name, about, id, avatar}) {
+    if (name) { 
+    this._nameEditProfile.textContent = name;
+    }
+    if (about) {
+    this._jobEditProfile.textContent = about;
+    }
+    if (id) {
+    this._profileId = id;
+    }
+    if (avatar){
+    this._avatarEditProfile.style.backgroundImage = `url('${avatar}')`;
+    }
   }
 
   getUserInfo () { 
@@ -20,9 +29,5 @@ export default class UserInfo {
       avatar: this._avatarEditProfile.src,
       id: this._profileId
     } 
-  }
-
-  setAvatar (avatarUrl) {
-    this._avatarEditProfile.style.backgroundImage = `url('${avatarUrl}')`
   }
 }

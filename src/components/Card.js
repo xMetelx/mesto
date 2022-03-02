@@ -1,12 +1,12 @@
 export default class Card {
-  constructor ({data, cardSelector, handleCardClick, handleLikeClick, handleCardDelete, api}) {
+  constructor ({data, template, handleCardClick, handleLikeClick, handleCardDelete, api}) {
     this._myId = data.myId;
     this._ownerId = data.owner._id;
     this._id = data._id;
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
-    this._cardSelector = cardSelector;
+    this._template = template;
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
     this._handleCardDelete = handleCardDelete;
@@ -21,7 +21,7 @@ export default class Card {
   }
 
    _getTemplate() { 
-    const newCard = this._cardSelector.content.querySelector('.element').cloneNode(true);
+    const newCard = this._template.content.querySelector('.element').cloneNode(true);
     return newCard
   } 
   
@@ -34,11 +34,10 @@ export default class Card {
     this._elementPicturePopup.addEventListener('click', () => this._handleCardClick());
   }
   
-  _deleteCard () {
+  deleteCard () {
     this._element.remove();
     this._element = null;
   }
-
 
   isLiked() {
     return this._likes.some(owner => this._myId === owner._id) //if true - card is liked

@@ -1,27 +1,16 @@
-const onError = res => {
-  if (res.ok) {
-    return res.json() //вернется promise
-  }
-  return Promise.reject('Сервер недоступен')
-}
-
 export class Api {
-  constructor(section, profile) {
-    this._section = section;
-    this._profile = profile;
-    this._baseUrl = 'https://mesto.nomoreparties.co/v1/cohort-34';
-    this._getUserUrl = 'https://mesto.nomoreparties.co/v1/cohort-34/users/me';
-    this._getCardsUrl = 'https://mesto.nomoreparties.co/v1/cohort-34/cards';
-    this._deleteCardUrl = 'https://mesto.nomoreparties.co/v1/cohort-34/cards';
-    this._likeCardUrl = 'https://mesto.nomoreparties.co/v1/cohort-34/cards/likes';
-    this._patchAvatarUrl = 'https://mesto.nomoreparties.co/v1/cohort-34/users/me/avatar';
-    this._headers = {
-      authorization: '0f69491b-0019-450c-bcd2-9a7eeaa1d51b',
-      'Content-Type': 'application/json'
-    }
+  constructor({baseUrl, headers}) {
+    this._baseUrl = baseUrl;
+    this._headers = headers
   }
 
-  // `${this._baseUrl}/${cardId}`
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json() //вернется promise
+    }
+    return Promise.reject('Сервер недоступен')
+  }
+
 
   // данные пользователя
   getUserInfo () {
@@ -29,7 +18,7 @@ export class Api {
       method: 'GET',
       headers: this._headers
     })
-      .then (onError) 
+      .then(this._checkResponse) 
   }
 
   // данные карточки - рендерим имеющиеся на сервере
@@ -38,7 +27,7 @@ export class Api {
       method: 'GET',
       headers: this._headers
     })
-      .then(onError)
+      .then(this._checkResponse)
   }
 
   // меняем имя и деятельность в профайле
@@ -51,7 +40,7 @@ export class Api {
         about: about
       })
     })
-    .then(onError)
+    .then(this._checkResponse)
     }
 
   //отправляем свою карточку на сервер  
@@ -64,7 +53,7 @@ export class Api {
         link: link
       })
     })
-      .then(onError)
+      .then(this._checkResponse)
   }
 
   // ставим лайк
@@ -73,7 +62,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then(onError)
+      .then(this._checkResponse)
   }
 
   // удаляем лайк
@@ -82,7 +71,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(onError)
+      .then(this._checkResponse)
   }
 
   // удаляем карточку
@@ -91,7 +80,7 @@ export class Api {
       method: "DELETE",
       headers: this._headers,
     })
-    .then (onError)
+    .then (this._checkResponse)
   }
 
  //меняем аватар пользователя
@@ -103,7 +92,7 @@ export class Api {
         avatar: avatar
       })
     })
-    .then(onError)
+    .then(this._checkResponse)
   }
 
 }

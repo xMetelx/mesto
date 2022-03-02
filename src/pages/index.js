@@ -9,7 +9,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupDeleteCard from '../components/PopupDeleteCard.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo';
-import {popupEditProfile, popupAddCard, popupOpenPicture, popupEditButton, popupAddButton, elementsList, templateElement, profileName, profileJob, addFormElement, editFormElement, nameEditProfile, jobEditProfile, popupEditAvatar, avatarEditButton, profilePhoto, editAvatarElement, deleteCardForm} from '../components/utils/constants.js';
+import {popupEditProfile, popupAddCard, popupOpenPicture, popupEditButton, popupAddButton, elementsList, templateElement, profileName, profileJob,  nameEditProfile, jobEditProfile, popupEditAvatar, avatarEditButton, profilePhoto, deleteCardForm} from '../components/utils/constants.js';
 
 // информация о пользователе
 const userInfo = new UserInfo(profileName, profileJob, profilePhoto);
@@ -19,30 +19,33 @@ const sectionElement = new Section(
   [],
   elementsList,
   (item) => {
-    const card = cardRender(item);
+    const card = renderCard(item);
     sectionElement.addItem(card, 'after')}
   )
 
 //API
-const api = new Api (
-  sectionElement,
-  userInfo
-)
+const api = new Api ({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-34',
+  headers: {
+    authorization: '0f69491b-0019-450c-bcd2-9a7eeaa1d51b',
+    'Content-Type': 'application/json'
+  }
+})
 
-api.getUserInfo()
-  .then(data => {
-    userInfo.setUserInfo({name: data.name, about: data.about, id: data._id});
-    userInfo.setAvatar(data.avatar)
+Promise.all([api.getUserInfo(), api.getCards()])
+  .then(([dataUser, dataCards]) => {
+    userInfo.setUserInfo({name: dataUser.name, about: dataUser.about, id: dataUser._id, avatar: dataUser.avatar});
+    sectionElement.renderItems(dataCards);
   })
   .catch((err) => {
     console.log(err);
   })
 
-function cardRender(data) {
+function renderCard(data) {
   const myId = userInfo.getUserInfo().id
   const card = new Card ({
     data: {...data, myId},
-    cardSelector: templateElement, 
+    template: templateElement, 
     handleCardClick: () => {
       openPopupWithPicture.openPopup({name: data.name, link: data.link}) 
     },
@@ -67,16 +70,6 @@ function cardRender(data) {
   return card.generateCard();
 }
 
-api.getCards()
-.then(data => {
-  const dataList = data.map((elem) => ({name: elem.name, link: elem.link, id: elem._id}));
-  api._section._items = dataList;
-  api._section.renderItems(data);
-})
-.catch((err) => {
-  console.log(err);
-})
-
 // delete card
 const deleteCardPopup = new PopupDeleteCard (deleteCardForm, deleteCardElement);
 deleteCardPopup.setEventListeners();
@@ -84,7 +77,7 @@ deleteCardPopup.setEventListeners();
 function deleteCardElement (card) {
   api.removeCard(card._id)
     .then(() => {
-      card._deleteCard(card);
+      card.deleteCard(card);
       deleteCardPopup.closePopup();
     })
     .catch(err => console.log(err))
@@ -92,7 +85,7 @@ function deleteCardElement (card) {
 
 popupAddButton.addEventListener('click', () => { 
   addCardPopup.openPopup(); 
-  addCardFormValidating.resetValidation(false);
+  FormValidators['add-card'].resetValidation(false);
 });
 
 // добавить карточку
@@ -100,15 +93,15 @@ function submitCardForm (data) {
   addCardPopup.loadingStatus(true);
   api.postCard(data.title, data.link)
     .then((res) => {
-      sectionElement.addItem(cardRender(res), 'before');
+      sectionElement.addItem(renderCard(res), 'before');
       addCardPopup.closePopup();
     })
     .catch(err => {console.log(err)})
     .finally(() => {
       addCardPopup.loadingStatus(false);
     })
-
 }
+
 const addCardPopup = new PopupWithForm(popupAddCard, submitCardForm);
 
 addCardPopup.setEventListeners(); 
@@ -118,7 +111,7 @@ function submitEditForm(data) {
   editProfilePopup.loadingStatus(true);
   api.patchProfile(data.name, data.about)
   .then(() => {
-    userInfo.setUserInfo({name: data.name, about: data.about});
+    userInfo.setUserInfo({data});
     editProfilePopup.closePopup();
   })
   .catch(err => {console.log(err)})
@@ -136,7 +129,7 @@ function editFormSubmit() {
   editProfilePopup.openPopup();
   nameEditProfile.value = user.name;
   jobEditProfile.value = user.job;
-  editProfileFormValidating.resetValidation(true);
+  FormValidators['edit-profile'].resetValidation(false);
 }
 
 popupEditButton.addEventListener('click', editFormSubmit);
@@ -148,10 +141,13 @@ openPopupWithPicture.setEventListeners();
 //попап редактирования аватара
 function submitEditAvatar (data) {
   editAvatarPopup.loadingStatus(true);
+
+  
   api.patchAvatar(data.avatar)
     .then(() => {
-      userInfo.setAvatar(data.avatar)
+      userInfo.setUserInfo(data)
       editAvatarPopup.closePopup();
+
     })
     .catch(err => {console.log(err)})
     .finally(() => {
@@ -165,29 +161,21 @@ editAvatarPopup.setEventListeners();
 
 avatarEditButton.addEventListener('click', () => { 
   editAvatarPopup.openPopup();
-  editAvatarFormValidation.resetValidation(true);
+  FormValidators['change-avatar'].resetValidation(false);
 });
 
 //вызов валидации
 
-function addCardFormValidator() {
-  const addFormValidation = new FormValidator(validationConfig, addFormElement);
-  addFormValidation.enableValidation();
-  return addFormValidation;
-}
+const FormValidators = {};
 
-function editProfileFormValidator() {
-  const editProfileValidation = new FormValidator(validationConfig, editFormElement);
-  editProfileValidation.enableValidation();
-  return editProfileValidation;
-}
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute('name');
+    FormValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
 
-function editAvatarFormValidator() {
-  const editAvatarFormValidation = new FormValidator(validationConfig, editAvatarElement);
-  editAvatarFormValidation.enableValidation();
-  return editAvatarFormValidation;
-}
-
-const addCardFormValidating = addCardFormValidator();
-const editProfileFormValidating = editProfileFormValidator();
-const editAvatarFormValidation = editAvatarFormValidator(); // use with submit button
+enableValidation(validationConfig);
