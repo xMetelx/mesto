@@ -48,7 +48,9 @@ export default class FormValidator {
   });
 
     this.form.addEventListener('submit', (evt) => {
+      
       evt.preventDefault();
+
     });
   }
 
