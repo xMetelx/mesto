@@ -111,7 +111,7 @@ function submitEditForm(data) {
   editProfilePopup.loadingStatus(true);
   api.patchProfile(data.name, data.about)
   .then(() => {
-    userInfo.setUserInfo({data});
+    userInfo.setUserInfo(data);
     editProfilePopup.closePopup();
   })
   .catch(err => {console.log(err)})
